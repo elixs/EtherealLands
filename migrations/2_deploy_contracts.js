@@ -1,5 +1,5 @@
-var ELand = artifacts.require("./ELand");
+var ECore = artifacts.require("./ECore");
 
 module.exports = function(deployer) {
-  deployer.deploy(ELand);
+  deployer.deploy(ECore);
 };
