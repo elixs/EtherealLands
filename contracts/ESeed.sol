@@ -51,15 +51,15 @@ contract ESeed is EPlayer{
         emit SeedCreated(id, _name, _traits);
     }
 
-    function _generateRandomTraits(string _str) private view returns (uint) {
-        uint rand = uint(keccak256(bytes(_str)));
+    function _generateRandomTraits(uint _int) private view returns (uint) {
+        uint rand = uint(keccak256(abi.encode(_int)));
         return rand % traitsModulus;
     }
 
-    function createRandomSeed(string _name) public {
+    function createRandomSeed(uint _id) public {
         //require(ownerSeedCount[msg.sender] == 0, "The first seed was already created");
-        uint randTraits = _generateRandomTraits(_name);
-        _createSeed(_name, randTraits);
+        uint randTraits = _generateRandomTraits(_id);
+        _createSeed(strConcat("Seed ",bytes32ToString(bytes32(seeds.length))), randTraits);
     }
 
     function getType(uint _seedId) public view returns (uint){
@@ -85,6 +85,17 @@ contract ESeed is EPlayer{
             }
         }
         return string(bytesString);
+    }
+
+    function strConcat(string _a, string _b) private pure returns (string){
+        bytes memory _ba = bytes(_a);
+        bytes memory _bb = bytes(_b);
+        string memory ab = new string(_ba.length + _bb.length);
+        bytes memory bab = bytes(ab);
+        uint k = 0;
+        for (uint i = 0; i < _ba.length; i++) bab[k++] = _ba[i];
+        for (i = 0; i < _bb.length; i++) bab[k++] = _bb[i];
+        return string(bab);
     }
 
 

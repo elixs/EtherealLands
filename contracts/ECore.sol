@@ -1,8 +1,9 @@
 pragma solidity ^0.4.23;
 
-import "./EWater.sol";
+import "./EWater.sol"; 
 
 contract ECore is EWater{
+
     function goToBed() public{
         uint playerId = ownerToPlayer[msg.sender];
         if(playerId != 0){
@@ -12,18 +13,17 @@ contract ECore is EWater{
                 Seed storage seed = seeds[player.seedsPlanted[i]];
                 if(seed.isWatered){
                     seed.isWatered = false;
+                    --seed.remainingDays;
                     if(seed.remainingDays == 0){
                         // Cosecha
-                        // Ahora se está creando la aleatoridad a partir del nombre, hay que pensar en una mejor manera, a partir del lenght de seeds los más probable
-                        createRandomSeed(bytes32ToString(bytes32(seed.traits)));
+                        // Se crea una nueva semilla a partir de la que se cosecho
+                        createRandomSeed(seed.traits + block.number);
                         //continue;
-                    }
-                    else{
-                        --seed.remainingDays;
                     }
 
                 }
             }
+            ++player.currentDay;
         }
     }
 }
