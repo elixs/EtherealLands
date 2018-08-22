@@ -1,7 +1,8 @@
 // solium-disable linebreak-style
 pragma solidity ^0.4.24;
 
-import "./EHelper.sol"; 
+import "./EHelper.sol";
+
 
 contract ESleep is EHelper{
 

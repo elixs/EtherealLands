@@ -3,6 +3,7 @@ pragma solidity ^0.4.24;
 
 import "./EPlayer.sol";
 
+
 contract ESeed is EPlayer{
 
     mapping (uint => uint8) public daysToHarvest;

@@ -1,11 +1,14 @@
 // solium-disable linebreak-style
 pragma solidity ^0.4.24;
 
-import "./ESleep.sol"; 
-import "./ERC721.sol"; 
+import "./ESleep.sol";
+import "./ERC721.sol";
+import "./SafeMath.sol"; 
 
 
 contract EOwnership is ESleep, ERC721 {
+
+    using SafeMath for uint256;
 
     mapping (uint => address) seedApprovals;
     mapping (address => mapping (address => bool)) internal seedOperatorApprovals;
@@ -158,7 +161,7 @@ contract EOwnership is ESleep, ERC721 {
     function addTokenTo(address _to, uint256 _tokenId) internal {
         require(seedOwner[_tokenId] == address(0), "The seed has a previous owner");
         seedOwner[_tokenId] = _to;
-        ++ownedSeedsCount[_to];
+        ownedSeedsCount[_to] = ownedSeedsCount[_to].add(1);
     }
 
     /**
@@ -168,7 +171,7 @@ contract EOwnership is ESleep, ERC721 {
     */
     function removeTokenFrom(address _from, uint256 _tokenId) internal {
         require(ownerOf(_tokenId) == _from, "The seed doesn't belong to the give address");
-        --ownedSeedsCount[_from];
+        ownedSeedsCount[_from] = ownedSeedsCount[_from].sub(1);
         seedOwner[_tokenId] = address(0);
     }
 }

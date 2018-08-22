@@ -1,7 +1,8 @@
 // solium-disable linebreak-style
 pragma solidity ^0.4.24;
 
-import "./EWater.sol"; 
+import "./EWater.sol";
+
 
 contract EHelper is EWater{
 
