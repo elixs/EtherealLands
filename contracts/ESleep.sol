@@ -3,7 +3,7 @@ pragma solidity ^0.4.24;
 
 import "./EHelper.sol"; 
 
-contract ECore is EHelper{
+contract ESleep is EHelper{
 
     uint sleepFee = 0.001 ether;
 
@@ -49,7 +49,7 @@ contract ECore is EHelper{
                         player.seedsPlanted[i] = player.seedsPlanted[player.seedsPlanted.length - 1];
                         delete player.seedsPlanted[player.seedsPlanted.length - 1];
                         // Se crea una nueva semilla a partir de la que se cosecho
-                        createRandomSeed(seed.traits + ownerSeedCount[msg.sender]);
+                        createRandomSeed(seed.traits + ownedSeedsCount[msg.sender]);
                         //continue;
                     }
 

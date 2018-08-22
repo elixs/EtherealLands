@@ -41,13 +41,13 @@ contract ESeed is EPlayer{
 
     Seed[] public seeds;
 
-    mapping (uint => address) public seedToOwner;
-    mapping (address => uint) ownerSeedCount;
+    mapping (uint => address) public seedOwner;
+    mapping (address => uint) ownedSeedsCount;
 
     function _createSeed(string _name, uint _traits) private {
         uint id = seeds.push(Seed(_name, _traits, 0, false)) - 1;
-        seedToOwner[id] = msg.sender;
-        ++ownerSeedCount[msg.sender];
+        seedOwner[id] = msg.sender;
+        ++ownedSeedsCount[msg.sender];
         emit SeedCreated(id, _name, _traits);
     }
 
@@ -57,7 +57,7 @@ contract ESeed is EPlayer{
     }
 
     function createRandomSeed(uint _id) internal {
-        //require(ownerSeedCount[msg.sender] == 0, "The first seed was already created");
+        //require(ownedSeedsCount[msg.sender] == 0, "The first seed was already created");
         uint randTraits = _generateRandomTraits(_id);
         _createSeed(strConcat("Seed ",bytes32ToString(bytes32(seeds.length))), randTraits);
     }

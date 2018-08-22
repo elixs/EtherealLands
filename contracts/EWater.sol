@@ -5,8 +5,8 @@ import "./ESeed.sol";
 
 contract EWater is ESeed{
 
-    modifier ownerOf(uint _seedId){
-        require(seedToOwner[_seedId] == msg.sender, "The seed doesn't belong to the player");
+    modifier onlyOwnerOf(uint _seedId){
+        require(seedOwner[_seedId] == msg.sender, "The seed doesn't belong to the player");
         _;
     }
 
@@ -14,7 +14,7 @@ contract EWater is ESeed{
 
     
 
-    function seedPlanting(uint _seedId) public ownerOf(_seedId){
+    function seedPlanting(uint _seedId) public onlyOwnerOf(_seedId){
         Seed storage seed = seeds[_seedId];
         if(seed.remainingDays == 0){
             Player storage player = players[ownerToPlayer[msg.sender]];
@@ -25,7 +25,7 @@ contract EWater is ESeed{
         }
     }
 
-    function seedWatering(uint _seedId) public ownerOf(_seedId){
+    function seedWatering(uint _seedId) public onlyOwnerOf(_seedId){
         Seed storage seed = seeds[_seedId];
         //Player storage player = players[ownerToPlayer[msg.sender]];
         if (!seed.isWatered && seed.remainingDays != 0){

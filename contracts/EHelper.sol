@@ -6,10 +6,10 @@ import "./EWater.sol";
 contract EHelper is EWater{
 
     function getSeedsByOwner(address _owner) external view returns(uint[]) {
-        uint[] memory result = new uint[](ownerSeedCount[_owner]);
+        uint[] memory result = new uint[](ownedSeedsCount[_owner]);
         uint counter = 0;
         for (uint i = 0; i < seeds.length; i++) {
-            if (seedToOwner[i] == _owner) {
+            if (seedOwner[i] == _owner) {
                 result[counter] = i;
                 counter++;
             }
