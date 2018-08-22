@@ -1,4 +1,5 @@
-pragma solidity ^0.4.23;
+// solium-disable linebreak-style
+pragma solidity ^0.4.24;
 
 import "./EPlayer.sol";
 
@@ -34,7 +35,6 @@ contract ESeed is EPlayer{
     struct Seed {
         string name;
         uint traits;
-        //uint8 lastWatered;
         uint8 remainingDays;
         bool isWatered;
     }
@@ -56,7 +56,7 @@ contract ESeed is EPlayer{
         return rand % traitsModulus;
     }
 
-    function createRandomSeed(uint _id) public {
+    function createRandomSeed(uint _id) internal {
         //require(ownerSeedCount[msg.sender] == 0, "The first seed was already created");
         uint randTraits = _generateRandomTraits(_id);
         _createSeed(strConcat("Seed ",bytes32ToString(bytes32(seeds.length))), randTraits);

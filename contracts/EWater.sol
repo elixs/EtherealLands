@@ -1,4 +1,5 @@
-pragma solidity ^0.4.23;
+// solium-disable linebreak-style
+pragma solidity ^0.4.24;
 
 import "./ESeed.sol";
 
