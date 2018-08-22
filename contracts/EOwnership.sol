@@ -3,12 +3,9 @@ pragma solidity ^0.4.24;
 
 import "./ESleep.sol";
 import "./ERC721.sol";
-import "./SafeMath.sol"; 
 
 
 contract EOwnership is ESleep, ERC721 {
-
-    using SafeMath for uint256;
 
     mapping (uint => address) seedApprovals;
     mapping (address => mapping (address => bool)) internal seedOperatorApprovals;

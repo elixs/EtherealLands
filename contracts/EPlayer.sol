@@ -2,13 +2,17 @@
 pragma solidity ^0.4.24;
 
 import "./Ownable.sol";
+import "./SafeMath.sol";
+
 
 contract EPlayer is Ownable{
+
+    using SafeMath for uint256;
 
     struct Player {
         string name;
         uint[] seedsPlanted;
-        uint8 currentDay;
+        uint currentDay;
         uint lastBedtime;
         //Add current season
     }

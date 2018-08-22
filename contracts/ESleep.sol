@@ -56,7 +56,7 @@ contract ESleep is EHelper{
 
                 }
             }
-            ++player.currentDay;
+            player.currentDay = player.currentDay.add(1);
         }
     }
 

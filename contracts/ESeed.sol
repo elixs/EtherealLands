@@ -5,7 +5,7 @@ import "./EPlayer.sol";
 
 
 contract ESeed is EPlayer{
-
+    
     mapping (uint => uint8) public daysToHarvest;
 
     constructor() public {
@@ -48,7 +48,7 @@ contract ESeed is EPlayer{
     function _createSeed(string _name, uint _traits) private {
         uint id = seeds.push(Seed(_name, _traits, 0, false)) - 1;
         seedOwner[id] = msg.sender;
-        ++ownedSeedsCount[msg.sender];
+        ownedSeedsCount[msg.sender] = ownedSeedsCount[msg.sender].add(1);
         emit SeedCreated(id, _name, _traits);
     }
 
