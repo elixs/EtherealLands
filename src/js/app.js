@@ -148,17 +148,6 @@ App = {
             seedTemplate.find('.seed-water').text(seed[3]);
 
             seedsRow.append(seedTemplate.html());
-
-            $("#seeds").append(
-              `<div class="seed">
-            <ul>
-                <li>Name: ${seed[0]}</li>
-                <li>DNA: ${seed[1]}</li>
-                <li>Days to grow: ${seed[2]}</li>
-                <li>Is the seed watered?: ${seed[3]}</li>
-            </ul>
-            </div>`
-            );
           });
       }
     });
