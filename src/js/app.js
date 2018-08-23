@@ -70,7 +70,9 @@ App = {
       var account = accounts[0];
       App.ELands.deployed().then(function (instance) {
         ELandsInstance = instance;
-        ELandsInstance.getSeedsByOwner(account, { from: account }).then(function (result) {
+        ELandsInstance.getSeedsByOwner(account, {
+          from: account
+        }).then(function (result) {
           App.displaySeeds(result);
         });
         //ELandsInstance.seeds(0).then(function (result) { console.log('result', result) });
@@ -165,14 +167,16 @@ App = {
       ELandsInstance = instance;
 
       //var seedId = parseInt($(event.target).data('id'));
-      var seedId = ELandsInstance.seeds.length;
-      console.log('seedId', seedId);
-
-      // Execute adopt as a transaction by sending account
-      return ELandsInstance.createRandomSeed(seedId).then(function (result) {
-        $("#txStatus").text("Successfully created Seed" + seedId + "!");
-        // Transaction was accepted into the blockchain, let's redraw the UI
-        App.updateInterface();
+      // var seedId = ELandsInstance.seeds.length;
+      return ELandsInstance.getTotalSeeds().then(function (seedId) {
+        console.log('seedId', seedId);
+        ELandsInstance.createRandomSeed(seedId).then(function (seed) {
+          // TODO esto se está llamando antes de tiempo
+          console.log('seed', seed);
+          $("#txStatus").text("Successfully created " + seed[0] + "!");
+          // Transaction was accepted into the blockchain, let's redraw the UI
+          App.updateInterface();
+        });
       });
     });
 
@@ -195,7 +199,9 @@ App = {
     $("#txStatus").text("Planting seed on the blockchain. This may take a while...");
     // Send the tx to our contract:seedId
     return etherealLands.methods.seedPlanting(seedId)
-      .send({ from: userAccount })
+      .send({
+        from: userAccount
+      })
       .on("receipt", function (receipt) {
         $("#txStatus").text("Successfully planted " + receipt + "!");
         // Transaction was accepted into the blockchain, let's redraw the UI
@@ -210,10 +216,12 @@ App = {
   seedWatering: function (seedId) {
     // This is going to take a while, so update the UI to let the user know
     // the transaction has been sent
-    $("#txStatus").text("Waterning seed on the blockchain. This may take a while...");
+    $("#txStatus").text("Watering seed on the blockchain. This may take a while...");
     // Send the tx to our contract:seedId
     return etherealLands.methods.seedWatering(seedId)
-      .send({ from: userAccount })
+      .send({
+        from: userAccount
+      })
       .on("receipt", function (receipt) {
         $("#txStatus").text("Successfully planted " + receipt + "!");
         // Transaction was accepted into the blockchain, let's redraw the UI
@@ -228,7 +236,10 @@ App = {
   goToBedEarlier: function () {
     $("#txStatus").text("Going to bed earlier...");
     return etherealLands.methods.goToBedEarlier()
-      .send({ from: userAccount, value: web3js.utils.toWei("0.001", "ether") })
+      .send({
+        from: userAccount,
+        value: web3js.utils.toWei("0.001", "ether")
+      })
       .on("receipt", function (receipt) {
         $("#txStatus").text("A new day has arrived!");
       })

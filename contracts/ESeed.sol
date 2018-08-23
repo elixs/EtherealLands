@@ -81,6 +81,10 @@ contract ESeed is EPlayer{
         return seedBonus % 3 - 1;
     }
 
+    function getTotalSeeds() external view returns(uint){
+        return seeds.length;
+    }
+
     function bytes32ToString (bytes32 data) private pure returns (string) {
         bytes memory bytesString = new bytes(32);
         for (uint j = 0; j < 32; j++) {

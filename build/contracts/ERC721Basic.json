@@ -211,9 +211,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// solium-disable linebreak-style\r\npragma solidity ^0.4.24;\r\n\r\nimport \"./ERC165.sol\"; \r\n\r\n\r\n/**\r\n * @title ERC721 Non-Fungible Token Standard basic interface\r\n * @dev see https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\r\n */\r\ncontract ERC721Basic /*is ERC165*/ {\r\n\r\n    bytes4 internal constant InterfaceId_ERC721 = 0x80ac58cd;\r\n    /*\r\n    * 0x80ac58cd ===\r\n    *   bytes4(keccak256('balanceOf(address)')) ^\r\n    *   bytes4(keccak256('ownerOf(uint256)')) ^\r\n    *   bytes4(keccak256('approve(address,uint256)')) ^\r\n    *   bytes4(keccak256('getApproved(uint256)')) ^\r\n    *   bytes4(keccak256('setApprovalForAll(address,bool)')) ^\r\n    *   bytes4(keccak256('isApprovedForAll(address,address)')) ^\r\n    *   bytes4(keccak256('transferFrom(address,address,uint256)')) ^\r\n    *   bytes4(keccak256('safeTransferFrom(address,address,uint256)')) ^\r\n    *   bytes4(keccak256('safeTransferFrom(address,address,uint256,bytes)'))\r\n    */\r\n\r\n    bytes4 internal constant InterfaceId_ERC721Enumerable = 0x780e9d63;\r\n    /**\r\n    * 0x780e9d63 ===\r\n    *   bytes4(keccak256('totalSupply()')) ^\r\n    *   bytes4(keccak256('tokenOfOwnerByIndex(address,uint256)')) ^\r\n    *   bytes4(keccak256('tokenByIndex(uint256)'))\r\n    */\r\n\r\n    bytes4 internal constant InterfaceId_ERC721Metadata = 0x5b5e139f;\r\n    /**\r\n    * 0x5b5e139f ===\r\n    *   bytes4(keccak256('name()')) ^\r\n    *   bytes4(keccak256('symbol()')) ^\r\n    *   bytes4(keccak256('tokenURI(uint256)'))\r\n    */\r\n\r\n    event Transfer(\r\n        address indexed _from,\r\n        address indexed _to,\r\n        uint256 indexed _tokenId\r\n    );\r\n    event Approval(\r\n        address indexed _owner,\r\n        address indexed _approved,\r\n        uint256 indexed _tokenId\r\n    );\r\n    event ApprovalForAll(\r\n        address indexed _owner,\r\n        address indexed _operator,\r\n        bool _approved\r\n    );\r\n\r\n    function balanceOf(address _owner) public view returns (uint256 _balance);\r\n    function ownerOf(uint256 _tokenId) public view returns (address _owner);\r\n\r\n    function approve(address _to, uint256 _tokenId) public;\r\n    function getApproved(uint256 _tokenId)\r\n        public view returns (address _operator);\r\n\r\n    function setApprovalForAll(address _operator, bool _approved) public;\r\n    function isApprovedForAll(address _owner, address _operator)\r\n        public view returns (bool);\r\n\r\n    function transferFrom(address _from, address _to, uint256 _tokenId) public;\r\n    // function safeTransferFrom(address _from, address _to, uint256 _tokenId)\r\n    //     public;\r\n\r\n    // function safeTransferFrom(\r\n    //     address _from,\r\n    //     address _to,\r\n    //     uint256 _tokenId,\r\n    //     bytes _data\r\n    // )\r\n    //     public;\r\n}",
-  "sourcePath": "D:\\Solidity\\EtherealLands\\contracts\\ERC721Basic.sol",
+  "sourcePath": "C:\\Users\\elixs\\Documents\\GitHub\\EtherealLands\\contracts\\ERC721Basic.sol",
   "ast": {
-    "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC721Basic.sol",
+    "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC721Basic.sol",
     "exportedSymbols": {
       "ERC721Basic": [
         606
@@ -234,7 +234,7 @@
         "src": "35:24:4"
       },
       {
-        "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC165.sol",
+        "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC165.sol",
         "file": "./ERC165.sol",
         "id": 519,
         "nodeType": "ImportDirective",
@@ -1312,7 +1312,7 @@
     "src": "35:2668:4"
   },
   "legacyAST": {
-    "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC721Basic.sol",
+    "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC721Basic.sol",
     "exportedSymbols": {
       "ERC721Basic": [
         606
@@ -1333,7 +1333,7 @@
         "src": "35:24:4"
       },
       {
-        "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC165.sol",
+        "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC165.sol",
         "file": "./ERC165.sol",
         "id": 519,
         "nodeType": "ImportDirective",
@@ -2416,5 +2416,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-23T10:01:19.160Z"
+  "updatedAt": "2018-08-23T18:03:18.414Z"
 }

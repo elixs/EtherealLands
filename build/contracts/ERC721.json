@@ -314,9 +314,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// solium-disable linebreak-style\r\npragma solidity ^0.4.24;\r\n\r\nimport \"./ERC721Basic.sol\";\r\n\r\n\r\n/**\r\n * @title ERC-721 Non-Fungible Token Standard, optional enumeration extension\r\n * @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\r\n */\r\ncontract ERC721Enumerable is ERC721Basic {\r\n    function totalSupply() public view returns (uint256);\r\n    function tokenOfOwnerByIndex(\r\n        address _owner,\r\n        uint256 _index\r\n    )\r\n        public\r\n        view\r\n        returns (uint256 _tokenId);\r\n\r\n    function tokenByIndex(uint256 _index) public view returns (uint256);\r\n}\r\n\r\n\r\n/**\r\n* @title ERC-721 Non-Fungible Token Standard, optional metadata extension\r\n* @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\r\n*/\r\ncontract ERC721Metadata is ERC721Basic {\r\n    function name() external view returns (string _name);\r\n    function symbol() external view returns (string _symbol);\r\n    function tokenURI(uint256 _tokenId) public view returns (string);\r\n}\r\n\r\n\r\n/**\r\n * @title ERC-721 Non-Fungible Token Standard, full implementation interface\r\n * @dev See https://github.com/ethereum/EIPs/blob/master/EIPS/eip-721.md\r\n */\r\ncontract ERC721 is ERC721Basic, ERC721Enumerable, ERC721Metadata {\r\n}",
-  "sourcePath": "D:\\Solidity\\EtherealLands\\contracts\\ERC721.sol",
+  "sourcePath": "C:\\Users\\elixs\\Documents\\GitHub\\EtherealLands\\contracts\\ERC721.sol",
   "ast": {
-    "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC721.sol",
+    "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC721.sol",
     "exportedSymbols": {
       "ERC721": [
         570
@@ -343,7 +343,7 @@
         "src": "35:24:4"
       },
       {
-        "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC721Basic.sol",
+        "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC721Basic.sol",
         "file": "./ERC721Basic.sol",
         "id": 519,
         "nodeType": "ImportDirective",
@@ -956,7 +956,7 @@
     "src": "35:1198:4"
   },
   "legacyAST": {
-    "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC721.sol",
+    "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC721.sol",
     "exportedSymbols": {
       "ERC721": [
         570
@@ -983,7 +983,7 @@
         "src": "35:24:4"
       },
       {
-        "absolutePath": "/D/Solidity/EtherealLands/contracts/ERC721Basic.sol",
+        "absolutePath": "/C/Users/elixs/Documents/GitHub/EtherealLands/contracts/ERC721Basic.sol",
         "file": "./ERC721Basic.sol",
         "id": 519,
         "nodeType": "ImportDirective",
@@ -1601,5 +1601,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-23T08:05:30.544Z"
+  "updatedAt": "2018-08-23T17:51:53.610Z"
 }
