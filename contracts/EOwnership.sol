@@ -2,10 +2,11 @@
 pragma solidity ^0.4.24;
 
 import "./ESleep.sol";
-import "./ERC721.sol";
+// import "./ERC721.sol";
+import "./ERC721Basic.sol";
 
 
-contract EOwnership is ESleep, ERC721 {
+contract EOwnership is ESleep, ERC721Basic {
 
     mapping (uint => address) seedApprovals;
     mapping (address => mapping (address => bool)) internal seedOperatorApprovals;

@@ -57,7 +57,7 @@ contract ESeed is EPlayer{
         return rand % traitsModulus;
     }
 
-    function createRandomSeed(uint _id) internal {
+    function createRandomSeed(uint _id) public {
         //require(ownedSeedsCount[msg.sender] == 0, "The first seed was already created");
         uint randTraits = _generateRandomTraits(_id);
         _createSeed(strConcat("Seed ",bytes32ToString(bytes32(seeds.length))), randTraits);
