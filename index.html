@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>CryptoZombies front-end</title>
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="web3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="ethereallands_abi.js"></script>
+</head>
+
+<body>
+
+    <div id="seeds"></div>
+
+    <script>
+        window.addEventListener('load', function () {
+
+            var etherealLands;
+            var userAccount;
+
+            function startApp() {
+                var etherealLandsAddress = "YOUR_CONTRACT_ADDRESS";
+                etherealLands = new web3js.eth.Contract(etherealLandsABI, etherealLandsAddress);
+
+                var accountInterval = setInterval(function () {
+                    // Check if account has changed
+                    if (web3.eth.accounts[0] !== userAccount) {
+                        userAccount = web3.eth.accounts[0];
+                        // Call some function to update the UI with the new account
+                        // updateInterface();
+                        getSeedsByOwner(userAccount).then(displaySeeds);
+                    }
+                }, 100);
+            }
+
+            function displaySeeds(ids) {
+                $("#seeds").empty();
+                for (id of ids) {
+                    getSeedDetails(id)
+                        .then(function (seed) {
+                            $("#seeds").append(
+                                `<div class="seed">
+                        <ul>
+                            <li>Name: ${seed.name}</li>
+                            <li>DNA: ${seed.traits}</li>
+                            <li>Days to grow: ${seed.remainingDays}</li>
+                            <li>Is the seed watered?: ${seed.isWatered}</li>
+                        </ul>
+                        </div>`
+                            );
+                        });
+                }
+            }
+
+            function getSeedDetails(id) {
+                return etherealLands.methods.seeds(id).call()
+            }
+
+            function seedOwner(id) {
+                return etherealLands.methods.seedOwner(id).call()
+            }
+
+            function getSeedsByOwner(owner) {
+                return etherealLands.methods.getSeedsByOwner(owner).call()
+            }
+
+
+            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+            if (typeof web3 !== 'undefined') {
+                // Use Mist/MetaMask's provider
+                web3js = new Web3(web3.currentProvider);
+            } else {
+                // Handle the case where the user doesn't have web3. Probably 
+                // show them a message telling them to install Metamask in 
+                // order to use our app.
+            }
+
+            // Now you can start your app & access web3js freely:
+            startApp()
+
+        })
+    </script>
+</body>
+
+</html>
