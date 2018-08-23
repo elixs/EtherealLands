@@ -1,6 +1,7 @@
 App = {
   web3Provider: null,
   contracts: {},
+  ELands: null,
 
   init: function () {
     // Load pets.
@@ -38,22 +39,43 @@ App = {
   initContract: function () {
     $.getJSON('EOwnership.json', function (data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract
-      var EOwnershipArtifact = data;
-      App.contracts.EOwnership = TruffleContract(EOwnershipArtifact);
+      // var EOwnershipArtifact = data;
+      var ELandsArtifact = data;
+      // App.contracts.EOwnership = TruffleContract(EOwnershipArtifact);
+      App.ELands = TruffleContract(ELandsArtifact);
 
       // Set the provider for our contract
-      App.contracts.EOwnership.setProvider(App.web3Provider);
+      // App.contracts.EOwnership.setProvider(App.web3Provider);
+      App.ELands.setProvider(App.web3Provider);
 
       // Use our contract to retrieve and mark the adopted pets
       // return App.markAdopted();
+
+      App.updateInterface();
     });
 
     return App.bindEvents();
   },
 
   bindEvents: function () {
-    $(document).on('click', '.btn-adopt', App.handleAdopt);
+    // $(document).on('click', '.btn-adopt', App.handleAdopt);
     $(document).on('click', '.btn-createSeed', App.createRandomSeed);
+  },
+
+  updateInterface: function () {
+    web3.eth.getAccounts(function (error, accounts) {
+      if (error) {
+        console.log(error);
+      }
+      var account = accounts[0];
+      App.ELands.deployed().then(function (instance) {
+        ELandsInstance = instance;
+        ELandsInstance.getSeedsByOwner(account, { from: account }).then(function (result) {
+          App.displaySeeds(result);
+        });
+        //ELandsInstance.seeds(0).then(function (result) { console.log('result', result) });
+      });
+    });
   },
 
   markAdopted: function (adopters, account) {
@@ -74,53 +96,72 @@ App = {
     });
   },
 
-  handleAdopt: function (event) {
-    event.preventDefault();
+  // handleAdopt: function (event) {
+  //   event.preventDefault();
 
-    var petId = parseInt($(event.target).data('id'));
+  //   var petId = parseInt($(event.target).data('id'));
 
-    var adoptionInstance;
+  //   var adoptionInstance;
 
-    web3.eth.getAccounts(function (error, accounts) {
-      if (error) {
-        console.log(error);
-      }
+  //   web3.eth.getAccounts(function (error, accounts) {
+  //     if (error) {
+  //       console.log(error);
+  //     }
 
-      var account = accounts[0];
+  //     var account = accounts[0];
 
-      App.contracts.Adoption.deployed().then(function (instance) {
-        adoptionInstance = instance;
+  //     App.contracts.Adoption.deployed().then(function (instance) {
+  //       adoptionInstance = instance;
 
-        // Execute adopt as a transaction by sending account
-        return adoptionInstance.adopt(petId, { from: account });
-      }).then(function (result) {
-        return App.markAdopted();
-      }).catch(function (err) {
-        console.log(err.message);
-      });
-    });
-  },
+  //       // Execute adopt as a transaction by sending account
+  //       return adoptionInstance.adopt(petId, { from: account });
+  //     }).then(function (result) {
+  //       return App.markAdopted();
+  //     }).catch(function (err) {
+  //       console.log(err.message);
+  //     });
+  //   });
+  // },
 
-  displaySeeds: function (event) {
-    $("#seeds").empty();
-    for (id of ids) {
-      // Look up seed details from our contract. Returns a `seed` object
-      getSeedDetails(id)
-        .then(function (seed) {
-          // Using ES6's "template literals" to inject variables into the HTML.
-          // Append each one to our #seeds div
-          $("#seeds").append(
-            `<div class="seed">
+  displaySeeds: function (ids) {
+    App.ELands.deployed().then(function (instance) {
+      ELandsInstance = instance;
+      console.log('ids', ids);
+
+      var seedsRow = $('#seedsRow');
+      var seedTemplate = $('#seedTemplate');
+
+      $("#seeds").empty();
+      for (id of ids) {
+        // Look up seed details from our contract. Returns a `seed` object
+
+        ELandsInstance.seeds(id)
+          .then(function (seed) {
+            console.log('seed', seed);
+            // Using ES6's "template literals" to inject variables into the HTML.
+            // Append each one to our #seeds div
+
+            seedTemplate.find('.card-header').text(seed[0]);
+            // petTemplate.find('img').attr('src', data[i].picture);
+            seedTemplate.find('.seed-traits').text(seed[1]);
+            seedTemplate.find('.seed-plant').text(seed[2]);
+            seedTemplate.find('.seed-water').text(seed[3]);
+
+            seedsRow.append(seedTemplate.html());
+
+            $("#seeds").append(
+              `<div class="seed">
             <ul>
-                <li>Name: ${seed.name}</li>
-                <li>DNA: ${seed.traits}</li>
-                <li>Days to grow: ${seed.remainingDays}</li>
-                <li>Is the seed watered?: ${seed.isWatered}</li>
+                <li>Name: ${seed[0]}</li>
+                <li>DNA: ${seed[1]}</li>
+                <li>Days to grow: ${seed[2]}</li>
+                <li>Is the seed watered?: ${seed[3]}</li>
             </ul>
             </div>`
-          );
-        });
-    }
+            );
+          });
+      }
+    });
   },
 
   createRandomSeed: function (event) {
@@ -128,23 +169,21 @@ App = {
     // This is going to take a while, so update the UI to let the user know
     // the transaction has been sent
     $("#txStatus").text("Creating new seed on the blockchain. This may take a while...");
-    // Send the tx to our contract:
 
 
-    var seedId = parseInt($(event.target).data('id'));
 
-    web3.eth.getAccounts(function (error, accounts) {
-      if (error) {
-        console.log(error);
-      }
+    App.ELands.deployed().then(function (instance) {
+      ELandsInstance = instance;
 
-      var account = accounts[0];
+      //var seedId = parseInt($(event.target).data('id'));
+      var seedId = ELandsInstance.seeds.length;
+      console.log('seedId', seedId);
 
-      App.contracts.EOwnership.deployed().then(function (instance) {
-        EOwnershipInstance = instance;
-
-        // Execute adopt as a transaction by sending account
-        return EOwnershipInstance.createRandomSeed(seedId, { from: account });
+      // Execute adopt as a transaction by sending account
+      return ELandsInstance.createRandomSeed(seedId).then(function (result) {
+        $("#txStatus").text("Successfully created Seed" + seedId + "!");
+        // Transaction was accepted into the blockchain, let's redraw the UI
+        App.updateInterface();
       });
     });
 
@@ -210,7 +249,12 @@ App = {
   },
 
   getSeedDetails: function (id) {
-    return etherealLands.methods.seeds(id).call()
+    App.ELands.deployed().then(function (instance) {
+      ELandsInstance = instance;
+
+      // Execute adopt as a transaction by sending account
+      return ELandsInstance.seeds(id);
+    });
   },
 
   seedOwner: function (id) {
@@ -218,9 +262,15 @@ App = {
   },
 
   getSeedsByOwner: function (owner) {
-    return etherealLands.methods.getSeedsByOwner(owner).call()
-  }
+    console.log('Owner:', owner);
 
+    App.ELands.deployed().then(function (instance) {
+      ELandsInstance = instance;
+
+      // Execute adopt as a transaction by sending account
+      return ELandsInstance.getSeedsByOwner(owner);
+    });
+  }
 };
 
 $(function () {

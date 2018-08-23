@@ -103,8 +103,8 @@
   ],
   "bytecode": "0x6080604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550610844806100536000396000f30060806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633ca7aac314610072578063715018a6146100c95780638da5cb5b146100e0578063b5eddba314610137578063f2fde38b146101a0575b600080fd5b34801561007e57600080fd5b506100b3600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101e3565b6040518082815260200191505060405180910390f35b3480156100d557600080fd5b506100de6101fb565b005b3480156100ec57600080fd5b506100f561038c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561014357600080fd5b5061019e600480360381019080803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506103b1565b005b3480156101ac57600080fd5b506101e1600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506104cd565b005b60026020528060005260406000206000915090505481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102e5576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260278152602001807f4f6e6c7920746865206f776e65722063616e20706572666f726d20746869732081526020017f616374696f6e2e0000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600160806040519081016040528084815260200160006040519080825280602002602001820160405280156103f75781602001602082028038833980820191505090505b508152602001600181526020014381525090806001815401808255809150509060018203906000526020600020906004020160009091929091909150600082015181600001908051906020019061044f929190610726565b50602082015181600101908051906020019061046c9291906107a6565b5060408201518160020155606082015181600301555050905080600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156105b7576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260278152602001807f4f6e6c7920746865206f776e65722063616e20706572666f726d20746869732081526020017f616374696f6e2e0000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b6105c0816105c3565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610668576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260198152602001807f54686520616464726573732063616e2774206265203078302e0000000000000081525060200191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061076757805160ff1916838001178555610795565b82800160010185558215610795579182015b82811115610794578251825591602001919060010190610779565b5b5090506107a291906107f3565b5090565b8280548282559060005260206000209081019282156107e2579160200282015b828111156107e15782518255916020019190600101906107c6565b5b5090506107ef91906107f3565b5090565b61081591905b808211156108115760008160009055506001016107f9565b5090565b905600a165627a7a72305820bd6e019e87e7aebf2ef8b3e0e943550861e2629796dd752b2c7d52a4f1f27c3b0029",
   "deployedBytecode": "0x60806040526004361061006d576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680633ca7aac314610072578063715018a6146100c95780638da5cb5b146100e0578063b5eddba314610137578063f2fde38b146101a0575b600080fd5b34801561007e57600080fd5b506100b3600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506101e3565b6040518082815260200191505060405180910390f35b3480156100d557600080fd5b506100de6101fb565b005b3480156100ec57600080fd5b506100f561038c565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561014357600080fd5b5061019e600480360381019080803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506103b1565b005b3480156101ac57600080fd5b506101e1600480360381019080803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506104cd565b005b60026020528060005260406000206000915090505481565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156102e5576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260278152602001807f4f6e6c7920746865206f776e65722063616e20706572666f726d20746869732081526020017f616374696f6e2e0000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167ff8df31144d9c2f0f6b59d69b8b98abd5459d07f2742c4df920b25aae33c6482060405160405180910390a260008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6000600160806040519081016040528084815260200160006040519080825280602002602001820160405280156103f75781602001602082028038833980820191505090505b508152602001600181526020014381525090806001815401808255809150509060018203906000526020600020906004020160009091929091909150600082015181600001908051906020019061044f929190610726565b50602082015181600101908051906020019061046c9291906107a6565b5060408201518160020155606082015181600301555050905080600260003373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001908152602001600020819055505050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156105b7576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260278152602001807f4f6e6c7920746865206f776e65722063616e20706572666f726d20746869732081526020017f616374696f6e2e0000000000000000000000000000000000000000000000000081525060400191505060405180910390fd5b6105c0816105c3565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614151515610668576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260198152602001807f54686520616464726573732063616e2774206265203078302e0000000000000081525060200191505060405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061076757805160ff1916838001178555610795565b82800160010185558215610795579182015b82811115610794578251825591602001919060010190610779565b5b5090506107a291906107f3565b5090565b8280548282559060005260206000209081019282156107e2579160200282015b828111156107e15782518255916020019190600101906107c6565b5b5090506107ef91906107f3565b5090565b61081591905b808211156108115760008160009055506001016107f9565b5090565b905600a165627a7a72305820bd6e019e87e7aebf2ef8b3e0e943550861e2629796dd752b2c7d52a4f1f27c3b0029",
-  "sourceMap": "118:496:2:-;;;661:10:9;653:5;;:18;;;;;;;;;;;;;;;;;;118:496:2;;;;;;",
-  "deployedSourceMap": "118:496:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;379:46;;8:9:-1;5:2;;;30:1;27;20:12;5:2;379:46:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1174:124:9;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1174:124:9;;;;;;284:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;284:20:9;;;;;;;;;;;;;;;;;;;;;;;;;;;434:177:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;434:177:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1473:111:9;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1473:111:9;;;;;;;;;;;;;;;;;;;;;;;;;;;;379:46:2;;;;;;;;;;;;;;;;;:::o;1174:124:9:-;824:5;;;;;;;;;;;810:19;;:10;:19;;;802:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1255:5;;;;;;;;;;;1236:25;;;;;;;;;;;;1288:1;1272:5;;:18;;;;;;;;;;;;;;;;;;1174:124::o;284:20::-;;;;;;;;;;;;;:::o;434:177:2:-;485:7;495;508:45;;;;;;;;;515:5;508:45;;;;533:1;522:13;;;;;;;;;;;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;148:4;140:6;136:17;126:27;;0:157;522:13:2;;;;508:45;;;;537:1;508:45;;;;540:12;508:45;;;495:59;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;495:59:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;485:69;;599:2;571:13;:25;585:10;571:25;;;;;;;;;;;;;;;:30;;;;434:177;;:::o;1473:111:9:-;824:5;;;;;;;;;;;810:19;;:10;:19;;;802:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1547:29;1566:9;1547:18;:29::i;:::-;1473:111;:::o;1732:218::-;1828:1;1807:23;;:9;:23;;;;1799:61;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1904:9;1876:38;;1897:5;;;;;;;;;;;1876:38;;;;;;;;;;;;1933:9;1925:5;;:17;;;;;;;;;;;;;;;;;;1732:218;:::o;118:496:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "sourceMap": "118:496:2:-;;;661:10:8;653:5;;:18;;;;;;;;;;;;;;;;;;118:496:2;;;;;;",
+  "deployedSourceMap": "118:496:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;379:46;;8:9:-1;5:2;;;30:1;27;20:12;5:2;379:46:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1174:124:8;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1174:124:8;;;;;;284:20;;8:9:-1;5:2;;;30:1;27;20:12;5:2;284:20:8;;;;;;;;;;;;;;;;;;;;;;;;;;;434:177:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;434:177:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1473:111:8;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1473:111:8;;;;;;;;;;;;;;;;;;;;;;;;;;;;379:46:2;;;;;;;;;;;;;;;;;:::o;1174:124:8:-;824:5;;;;;;;;;;;810:19;;:10;:19;;;802:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1255:5;;;;;;;;;;;1236:25;;;;;;;;;;;;1288:1;1272:5;;:18;;;;;;;;;;;;;;;;;;1174:124::o;284:20::-;;;;;;;;;;;;;:::o;434:177:2:-;485:7;495;508:45;;;;;;;;;515:5;508:45;;;;533:1;522:13;;;;;;;;;;;;;;;;;;;;;;29:2:-1;21:6;17:15;117:4;105:10;97:6;88:34;148:4;140:6;136:17;126:27;;0:157;522:13:2;;;;508:45;;;;537:1;508:45;;;;540:12;508:45;;;495:59;;39:1:-1;33:3;27:10;23:18;57:10;52:3;45:23;79:10;72:17;;0:93;495:59:2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;485:69;;599:2;571:13;:25;585:10;571:25;;;;;;;;;;;;;;;:30;;;;434:177;;:::o;1473:111:8:-;824:5;;;;;;;;;;;810:19;;:10;:19;;;802:71;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1547:29;1566:9;1547:18;:29::i;:::-;1473:111;:::o;1732:218::-;1828:1;1807:23;;:9;:23;;;;1799:61;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1904:9;1876:38;;1897:5;;;;;;;;;;;1876:38;;;;;;;;;;;;1933:9;1925:5;;:17;;;;;;;;;;;;;;;;;;1732:218;:::o;118:496:2:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
   "source": "// solium-disable linebreak-style\r\npragma solidity ^0.4.24;\r\n\r\nimport \"./Ownable.sol\";\r\nimport \"./SafeMath.sol\";\r\n\r\n\r\ncontract EPlayer is Ownable{\r\n\r\n    using SafeMath for uint256;\r\n\r\n    struct Player {\r\n        string name;\r\n        uint[] seedsPlanted;\r\n        uint currentDay;\r\n        uint lastBedtime;\r\n        //Add current season\r\n    }\r\n\r\n    Player[] players;\r\n\r\n    mapping (address => uint) public ownerToPlayer;\r\n\r\n    function createLand(string _name) public{\r\n        uint id = players.push(Player(_name, new uint[](0), 1, block.number)); //- 1\r\n        ownerToPlayer[msg.sender] = id;\r\n\r\n    }\r\n}",
   "sourcePath": "D:\\Solidity\\EtherealLands\\contracts\\EPlayer.sol",
   "ast": {
@@ -134,7 +134,7 @@
         "id": 452,
         "nodeType": "ImportDirective",
         "scope": 507,
-        "sourceUnit": 1477,
+        "sourceUnit": 1649,
         "src": "63:23:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -145,7 +145,7 @@
         "id": 453,
         "nodeType": "ImportDirective",
         "scope": 507,
-        "sourceUnit": 1610,
+        "sourceUnit": 1782,
         "src": "88:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -159,10 +159,10 @@
               "id": 454,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1476,
+              "referencedDeclaration": 1648,
               "src": "138:7:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1476",
+                "typeIdentifier": "t_contract$_Ownable_$1648",
                 "typeString": "contract Ownable"
               }
             },
@@ -172,7 +172,7 @@
           }
         ],
         "contractDependencies": [
-          1476
+          1648
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -180,7 +180,7 @@
         "id": 506,
         "linearizedBaseContracts": [
           506,
-          1476
+          1648
         ],
         "name": "EPlayer",
         "nodeType": "ContractDefinition",
@@ -192,10 +192,10 @@
               "id": 456,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1609,
+              "referencedDeclaration": 1781,
               "src": "160:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$1609",
+                "typeIdentifier": "t_contract$_SafeMath_$1781",
                 "typeString": "library SafeMath"
               }
             },
@@ -579,7 +579,7 @@
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1614,
+                              "referencedDeclaration": 1786,
                               "src": "540:5:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_block",
@@ -729,7 +729,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1624,
+                          "referencedDeclaration": 1796,
                           "src": "585:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -876,7 +876,7 @@
         "id": 452,
         "nodeType": "ImportDirective",
         "scope": 507,
-        "sourceUnit": 1477,
+        "sourceUnit": 1649,
         "src": "63:23:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -887,7 +887,7 @@
         "id": 453,
         "nodeType": "ImportDirective",
         "scope": 507,
-        "sourceUnit": 1610,
+        "sourceUnit": 1782,
         "src": "88:24:2",
         "symbolAliases": [],
         "unitAlias": ""
@@ -901,10 +901,10 @@
               "id": 454,
               "name": "Ownable",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1476,
+              "referencedDeclaration": 1648,
               "src": "138:7:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_Ownable_$1476",
+                "typeIdentifier": "t_contract$_Ownable_$1648",
                 "typeString": "contract Ownable"
               }
             },
@@ -914,7 +914,7 @@
           }
         ],
         "contractDependencies": [
-          1476
+          1648
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -922,7 +922,7 @@
         "id": 506,
         "linearizedBaseContracts": [
           506,
-          1476
+          1648
         ],
         "name": "EPlayer",
         "nodeType": "ContractDefinition",
@@ -934,10 +934,10 @@
               "id": 456,
               "name": "SafeMath",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1609,
+              "referencedDeclaration": 1781,
               "src": "160:8:2",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_SafeMath_$1609",
+                "typeIdentifier": "t_contract$_SafeMath_$1781",
                 "typeString": "library SafeMath"
               }
             },
@@ -1321,7 +1321,7 @@
                               "name": "block",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 1614,
+                              "referencedDeclaration": 1786,
                               "src": "540:5:2",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_block",
@@ -1471,7 +1471,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1624,
+                          "referencedDeclaration": 1796,
                           "src": "585:3:2",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -1597,5 +1597,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2018-08-23T08:05:30.546Z"
+  "updatedAt": "2018-08-23T10:01:19.158Z"
 }

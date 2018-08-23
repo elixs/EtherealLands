@@ -16,10 +16,47 @@
 </head>
 
 <body>
-    <div id="txStatus"></div>
-    <div id="seeds"></div>
-    <button class="btn btn-default btn-createSeed" type="button" data-id="0">Create seed</button>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <h1 class="text-center">Ethereal Lands · - ·)></h1>
+                <hr/>
+                <br/>
+            </div>
+        </div>
+        <div id="txStatus"></div>
+        <div id="seeds"></div>
+        <div id="seedsRow" class="row">
+            <!-- SEEDS LOAD HERE -->
+        </div>
+        <!-- <div id="seedTemplate" style="display: none;"> -->
+        <div id="seedTemplate" style="">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+
+                <div class="card">
+                    <div class="card-header">
+                        Seed X
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg"
+                                data-holder-rendered="true">
+                            <br/><br/>
+                            <strong>Traits</strong>: <span class="seed-traits">702947</span><br/>
+                            <strong>Days to grow</strong>: <span class="seed-plant">3</span><br/>
+                            <strong>Is the seed watered?</strong>: <span class="seed-water">false</span><br/><br/>
+                        </div>
+                        <!-- <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button> -->
+                        <button type="button" class="btn btn-success btn-plant" data-id="0">Plant</button>
+                        <button type="button" class="btn btn-primary btn-water" data-id="0">Water</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-default btn-createSeed" type="button" data-id="0">Create seed</button>
+
+    </div>
     <!-- <script>
         window.addEventListener('load', function () {
 
@@ -72,23 +109,6 @@
                 }
             }
 
-            function createRandomSeed(name) {
-                // This is going to take a while, so update the UI to let the user know
-                // the transaction has been sent
-                $("#txStatus").text("Creating new seed on the blockchain. This may take a while...");
-                // Send the tx to our contract:
-                return etherealLands.methods.createRandomSeed(name)
-                    .send({ from: userAccount })
-                    .on("receipt", function (receipt) {
-                        $("#txStatus").text("Successfully created " + name + "!");
-                        // Transaction was accepted into the blockchain, let's redraw the UI
-                        getSeedsByOwner(userAccount).then(displaySeeds);
-                    })
-                    .on("error", function (error) {
-                        // Do something to alert the user their transaction has failed
-                        $("#txStatus").text(error);
-                    });
-            }
 
             function seedPlanting(seedId) {
                 // This is going to take a while, so update the UI to let the user know
