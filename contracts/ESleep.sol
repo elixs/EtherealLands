@@ -26,16 +26,12 @@ contract ESleep is EHelper{
     }
 
     function _goToBedLogic(bool _hasPaid) private{
-        uint playerId = ownerToPlayer[msg.sender];
+        uint playerId = ownerPlayer[msg.sender];
         if(playerId != 0){
-            Player storage player = players[playerId];
+            Player storage player = players[playerId - 1];
             if(!_hasPaid){
                 require(_isReadyToSleep(player), "Hasn't pass enough time to go to bed");
             }
-            
-            //if(!_isReadyToSleep(player)){
-                // Cobrar fee
-            //}
             _triggerSleepCooldown(player);
             //uint seedPlantedLength = player.seedsPlanted.length;
             //uint[] memory seedsGrown = new uint[](seedPlantedLength);

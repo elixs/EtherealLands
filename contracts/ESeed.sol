@@ -8,13 +8,22 @@ contract ESeed is EPlayer{
     
     mapping (uint => uint8) public daysToHarvest;
 
+    // constructor() public {
+    //     daysToHarvest[0] = 5;
+    //     daysToHarvest[1] = 8;
+    //     daysToHarvest[2] = 8;
+    //     daysToHarvest[3] = 10;
+    //     daysToHarvest[4] = 8;
+    //     daysToHarvest[5] = 10;
+    // }
+
     constructor() public {
-        daysToHarvest[0] = 5;
-        daysToHarvest[1] = 8;
-        daysToHarvest[2] = 8;
-        daysToHarvest[3] = 10;
-        daysToHarvest[4] = 8;
-        daysToHarvest[5] = 10;
+        daysToHarvest[0] = 2;
+        daysToHarvest[1] = 2;
+        daysToHarvest[2] = 2;
+        daysToHarvest[3] = 2;
+        daysToHarvest[4] = 2;
+        daysToHarvest[5] = 2;
     }
 
     event SeedCreated(
@@ -85,34 +94,6 @@ contract ESeed is EPlayer{
         return seeds.length;
     }
 
-    function bytes32ToString (bytes32 data) private pure returns (string) {
-        bytes memory bytesString = new bytes(32);
-        for (uint j = 0; j < 32; j++) {
-            byte char = byte(bytes32(uint(data) * 2 ** (8 * j)));
-            if (char != 0) {
-                bytesString[j] = char;
-            }
-        }
-        return string(bytesString);
-    }
-
-    function uintToString(uint _v) private pure returns (string) {
-        uint v = _v;
-        uint maxlength = 100;
-        bytes memory reversed = new bytes(maxlength);
-        uint i = 0;
-        while (v != 0) {
-            uint remainder = v % 10;
-            v = v / 10;
-            reversed[i++] = byte(48 + remainder);
-        }
-        bytes memory s = new bytes(i);
-        for (uint j = 0; j < i; j++) {
-            s[j] = reversed[i - 1 - j];
-        }
-        return string(s);
-    }
-
     function appendUintToString(string inStr, uint _v) private pure returns (string) {
         uint v = _v;
         uint maxlength = 100;
@@ -135,15 +116,10 @@ contract ESeed is EPlayer{
         return string(s);
     }
 
-    function strConcat(string _a, string _b) private pure returns (string){
-        bytes memory _ba = bytes(_a);
-        bytes memory _bb = bytes(_b);
-        string memory ab = new string(_ba.length + _bb.length);
-        bytes memory bab = bytes(ab);
-        uint k = 0;
-        for (uint i = 0; i < _ba.length; i++) bab[k++] = _ba[i];
-        for (i = 0; i < _bb.length; i++) bab[k++] = _bb[i];
-        return string(bab);
+    function createLand(string _name) public{
+        uint id = players.push(Player(_name, new uint[](0), 1, block.number)); //- 1
+        ownerPlayer[msg.sender] = id;
+        createRandomSeed(seeds.length);
     }
 
 

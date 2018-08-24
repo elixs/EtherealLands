@@ -13,12 +13,11 @@ contract EWater is ESeed{
 
     mapping (address => uint) ownerSeedsPlanted;
 
-    
 
     function seedPlanting(uint _seedId) public onlyOwnerOf(_seedId){
         Seed storage seed = seeds[_seedId];
         if(seed.remainingDays == 0){
-            Player storage player = players[ownerToPlayer[msg.sender]];
+            Player storage player = players[ownerPlayer[msg.sender] - 1];
             seed.remainingDays = daysToHarvest[getType(_seedId)] + uint8(getBonus(_seedId));
             //seed.lastWatered = player.currentDay;
             player.seedsPlanted.push(_seedId);
@@ -28,7 +27,7 @@ contract EWater is ESeed{
 
     function seedWatering(uint _seedId) public onlyOwnerOf(_seedId){
         Seed storage seed = seeds[_seedId];
-        //Player storage player = players[ownerToPlayer[msg.sender]];
+        //Player storage player = players[ownerPlayer[msg.sender]];
         if (!seed.isWatered && seed.remainingDays != 0){
             seed.isWatered = true;
             //seed.lastWatered = player.currentDay;
