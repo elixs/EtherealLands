@@ -1,0 +1,35 @@
+{
+  "name": "ethereallands",
+  "version": "1.0.0",
+  "description": "Enjoy farming on the Ethereal Lands · - ·)/",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "truffle": "^4.1.14",
+    "truffle-contract": "^3.0.6"
+  },
+  "devDependencies": {
+    "lite-server": "^2.4.0"
+  },
+  "scripts": {
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elixs/EtherealLands.git"
+  },
+  "keywords": [
+    "ethereum",
+    "ethereallands",
+    "farming"
+  ],
+  "author": "Elías Zelada",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elixs/EtherealLands/issues"
+  },
+  "homepage": "https://github.com/elixs/EtherealLands#readme"
+}

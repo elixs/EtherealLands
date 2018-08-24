@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script language="javascript" type="text/javascript" src="ethereallands_abi.js"></script> -->
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous"> -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <title>Ethereal Land</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-push-2">
+                <h1 class="text-center">Ethereal Lands · - ·)></h1>
+                <hr/>
+                <br/>
+            </div>
+        </div>
+        <div id="txStatus"></div>
+        <div id="seeds"></div>
+        <div id="seedsRow" class="row">
+            <!-- SEEDS LOAD HERE -->
+        </div>
+        <div id="seedTemplate" style="display: none;">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+
+                <div class="card">
+                    <div class="card-header">
+                        Seed X
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%; image-rendering: pixelated;" src="images/0-turnip.png"
+                                data-holder-rendered="true">
+                            <br/><br/>
+                            <strong>Traits</strong>: <span class="seed-traits">702947</span><br/>
+                            <strong>Days to grow</strong>: <span class="seed-plant">3</span><br/>
+                            <strong>Is the seed watered?</strong>: <span class="seed-water">false</span><br/><br/>
+                        </div>
+                        <!-- <button class="btn btn-default btn-adopt" type="button" data-id="0">Adopt</button> -->
+                        <button type="button" class="btn btn-success btn-plant" data-id="0">Plant</button>
+                        <button type="button" class="btn btn-primary btn-water" data-id="0">Water</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-default btn-createSeed" type="button" data-id="0">Create seed</button>
+
+    </div>
+    <!-- <script>
+        window.addEventListener('load', function () {
+
+            var etherealLands;
+            var userAccount;
+
+            function startApp() {
+                var etherealLandsAddress = "YOUR_CONTRACT_ADDRESS";
+                etherealLands = new web3js.eth.Contract(etherealLandsABI, etherealLandsAddress);
+
+                var accountInterval = setInterval(function () {
+                    // Check if account has changed
+                    if (web3.eth.accounts[0] !== userAccount) {
+                        userAccount = web3.eth.accounts[0];
+                        // Call some function to update the UI with the new account
+                        // updateInterface();
+                        getSeedsByOwner(userAccount).then(displaySeeds);
+                    }
+                }, 100);
+
+                // Use `filter` to only fire this code when `_to` equals `userAccount`
+                etherealLands.events.Transfer({ filter: { _to: userAccount } })
+                    .on("data", function (event) {
+                        let data = event.returnValues;
+                        // The current user just received a zombie!
+                        // Do something here to update the UI to show it
+                        getSeedsByOwner(userAccount).then(displaySeeds);
+                    }).on("error", console.error);
+            }
+
+            function displaySeeds(ids) {
+                $("#seeds").empty();
+                for (id of ids) {
+                    // Look up seed details from our contract. Returns a `seed` object
+                    getSeedDetails(id)
+                        .then(function (seed) {
+                            // Using ES6's "template literals" to inject variables into the HTML.
+                            // Append each one to our #seeds div
+                            $("#seeds").append(
+                                `<div class="seed">
+                        <ul>
+                            <li>Name: ${seed.name}</li>
+                            <li>DNA: ${seed.traits}</li>
+                            <li>Days to grow: ${seed.remainingDays}</li>
+                            <li>Is the seed watered?: ${seed.isWatered}</li>
+                        </ul>
+                        </div>`
+                            );
+                        });
+                }
+            }
+
+
+            function seedPlanting(seedId) {
+                // This is going to take a while, so update the UI to let the user know
+                // the transaction has been sent
+                $("#txStatus").text("Planting seed on the blockchain. This may take a while...");
+                // Send the tx to our contract:seedId
+                return etherealLands.methods.seedPlanting(seedId)
+                    .send({ from: userAccount })
+                    .on("receipt", function (receipt) {
+                        $("#txStatus").text("Successfully planted " + receipt + "!");
+                        // Transaction was accepted into the blockchain, let's redraw the UI
+                        getSeedsByOwner(userAccount).then(displaySeeds);
+                    })
+                    .on("error", function (error) {
+                        // Do something to alert the user their transaction has failed
+                        $("#txStatus").text(error);
+                    });
+            }
+
+            function seedWatering(seedId) {
+                // This is going to take a while, so update the UI to let the user know
+                // the transaction has been sent
+                $("#txStatus").text("Waterning seed on the blockchain. This may take a while...");
+                // Send the tx to our contract:seedId
+                return etherealLands.methods.seedWatering(seedId)
+                    .send({ from: userAccount })
+                    .on("receipt", function (receipt) {
+                        $("#txStatus").text("Successfully planted " + receipt + "!");
+                        // Transaction was accepted into the blockchain, let's redraw the UI
+                        getSeedsByOwner(userAccount).then(displaySeeds);
+                    })
+                    .on("error", function (error) {
+                        // Do something to alert the user their transaction has failed
+                        $("#txStatus").text(error);
+                    });
+            }
+
+            function goToBedEarlier() {
+                $("#txStatus").text("Going to bed earlier...");
+                return etherealLands.methods.goToBedEarlier()
+                    .send({ from: userAccount, value: web3js.utils.toWei("0.001", "ether") })
+                    .on("receipt", function (receipt) {
+                        $("#txStatus").text("A new day has arrived!");
+                    })
+                    .on("error", function (error) {
+                        $("#txStatus").text(error);
+                    });
+            }
+
+            function getSeedDetails(id) {
+                return etherealLands.methods.seeds(id).call()
+            }
+
+            function seedOwner(id) {
+                return etherealLands.methods.seedOwner(id).call()
+            }
+
+            function getSeedsByOwner(owner) {
+                return etherealLands.methods.getSeedsByOwner(owner).call()
+            }
+
+
+            // Checking if Web3 has been injected by the browser (Mist/MetaMask)
+            if (typeof web3 !== 'undefined') {
+                // Use Mist/MetaMask's provider
+                web3js = new Web3(web3.currentProvider);
+            } else {
+                // Handle the case where the user doesn't have web3. Probably 
+                // show them a message telling them to install Metamask in 
+                // order to use our app.
+            }
+
+            // Now you can start your app & access web3js freely:
+            startApp()
+
+        })
+    </script> -->
+
+    <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/web3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="js/truffle-contract.js"></script>
+    <script language="javascript" type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>
