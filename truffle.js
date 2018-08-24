@@ -12,8 +12,6 @@
  *   },
  */
 
-var HDWalletProvider = require("truffle-hdwallet-provider");
-var mnemonic = "asthma minor wire illness pyramid width coil pepper west mandate rubber sausage";
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -23,11 +21,6 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*", // Match any network id
-    },
-    ropsten: {
-      host: "localhost",
-      port: 8545,
-      network_id: "3"
     }
   }
 };
