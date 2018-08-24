@@ -1,26 +1,11 @@
+web3js = require('web3')
+
 App = {
   web3Provider: null,
   contracts: {},
   ELands: null,
 
   init: function () {
-    // Load pets.
-    // $.getJSON('../pets.json', function(data) {
-    //   var petsRow = $('#petsRow');
-    //   var petTemplate = $('#petTemplate');
-
-    //   for (i = 0; i < data.length; i ++) {
-    //     petTemplate.find('.panel-title').text(data[i].name);
-    //     petTemplate.find('img').attr('src', data[i].picture);
-    //     petTemplate.find('.pet-breed').text(data[i].breed);
-    //     petTemplate.find('.pet-age').text(data[i].age);
-    //     petTemplate.find('.pet-location').text(data[i].location);
-    //     petTemplate.find('.btn-adopt').attr('data-id', data[i].id);
-
-    //     petsRow.append(petTemplate.html());
-    //   }
-    // });
-    // getSeedsByOwner(userAccount).then(displaySeeds);
     return App.initWeb3();
   },
 
@@ -38,11 +23,14 @@ App = {
 
   initContract: function () {
     $.getJSON('EOwnership.json', function (data) {
+    // $.getJSON('ELands.json', function (data) {
       // Get the necessary contract artifact file and instantiate it with truffle-contract
       // var EOwnershipArtifact = data;
       var ELandsArtifact = data;
+      console.log(data)
       // App.contracts.EOwnership = TruffleContract(EOwnershipArtifact);
       App.ELands = TruffleContract(ELandsArtifact);
+      // App.ELands = TruffleContract({abi: "etherealLands_abi.json", address: 0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d});
 
       // Set the provider for our contract
       // App.contracts.EOwnership.setProvider(App.web3Provider);
@@ -59,7 +47,12 @@ App = {
 
   bindEvents: function () {
     // $(document).on('click', '.btn-adopt', App.handleAdopt);
-    $(document).on('click', '.btn-createSeed', App.createRandomSeed);
+    $(document).on('click', '.btn-create-seed', App.createRandomSeed);
+    $(document).on('click', '.btn-new-land', App.createLand);
+    $(document).on('click', '.btn-plant', App.seedPlanting);
+    $(document).on('click', '.btn-water', App.seedWatering);
+    $(document).on('click', '.btn-sleep', App.goToBed);
+    $(document).on('click', '.btn-sleep-earlier', App.goToBedEarlier);
   },
 
   updateInterface: function () {
@@ -68,188 +61,189 @@ App = {
         console.log(error);
       }
       var account = accounts[0];
-      App.ELands.deployed().then(function (instance) {
+      return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
         ELandsInstance = instance;
-        ELandsInstance.getSeedsByOwner(account, {
+        return ELandsInstance.getSeedsByOwner(account, {
           from: account
         }).then(function (result) {
-          App.displaySeeds(result);
+          console.log('seeds', result);
+          return App.displaySeeds(result);
         });
         //ELandsInstance.seeds(0).then(function (result) { console.log('result', result) });
       });
     });
   },
 
-  markAdopted: function (adopters, account) {
-    var adoptionInstance;
+  displaySeeds: function (ids) {
+    // Check if the user has a player
 
-    App.contracts.Adoption.deployed().then(function (instance) {
-      adoptionInstance = instance;
+    // new-land
 
-      return adoptionInstance.getAdopters.call();
-    }).then(function (adopters) {
-      for (i = 0; i < adopters.length; i++) {
-        if (adopters[i] !== '0x0000000000000000000000000000000000000000') {
-          $('.panel-pet').eq(i).find('button').text('Success').attr('disabled', true);
-        }
+
+    web3.eth.getAccounts(function (error, accounts) {
+      if (error) {
+        console.log(error);
       }
-    }).catch(function (err) {
-      console.log(err.message);
+
+      var account = accounts[0];
+
+      return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
+        ELandsInstance = instance;
+
+
+
+        console.log('ids', ids);
+
+        var seedsRow = $('#seedsRow');
+        var seedTemplate = $('#seedTemplate');
+
+        $("#seedsRow").empty();
+        console.log('Seeds empty');
+        return ELandsInstance.ownerPlayer(account).then(function (player) {
+          console.log('player', player);
+          if (player == 0) {
+            console.log('no-player');
+            $('#new-land').show();
+            return;
+          }
+          else {
+            return ELandsInstance.players(parseInt(player) - 1).then(function (name) {
+              console.log('result[0]', name);
+              $('#land-name').text(name[0] + " (· - ·)º");
+              $('#land-name-display').show();
+
+              for (let id of ids) {
+                // Look up seed details from our contract.Returns a`seed` object
+                var seedPromise = ELandsInstance.seeds(id);
+                var typePromise = ELandsInstance.getType(id);
+                Promise.all([seedPromise, typePromise]).then(function ([seed, type]) {
+                  console.log('seeeed', seed);
+                  seedTemplate.find('.card-header').text(seed[0]);
+                  seedTemplate.find('.seed-traits').text(seed[1]);
+                  seedTemplate.find('.seed-plant').text(seed[2]);
+                  seedTemplate.find('.seed-water').text(seed[3]);
+                  seedTemplate.find('.btn-plant').attr('data-id', id);
+                  seedTemplate.find('.btn-water').attr('data-id', id);
+                  seedTemplate.find('img').attr('src', 'images/' + type + '.png');
+                  seedsRow.append(seedTemplate.html());
+                  return // something using both resultA and resultB
+                });
+              }
+            });
+          }
+        });
+      });
     });
   },
 
-  // handleAdopt: function (event) {
-  //   event.preventDefault();
-
-  //   var petId = parseInt($(event.target).data('id'));
-
-  //   var adoptionInstance;
-
-  //   web3.eth.getAccounts(function (error, accounts) {
-  //     if (error) {
-  //       console.log(error);
-  //     }
-
-  //     var account = accounts[0];
-
-  //     App.contracts.Adoption.deployed().then(function (instance) {
-  //       adoptionInstance = instance;
-
-  //       // Execute adopt as a transaction by sending account
-  //       return adoptionInstance.adopt(petId, { from: account });
-  //     }).then(function (result) {
-  //       return App.markAdopted();
-  //     }).catch(function (err) {
-  //       console.log(err.message);
-  //     });
-  //   });
-  // },
-
-  displaySeeds: function (ids) {
-    App.ELands.deployed().then(function (instance) {
+  createLand: function (event) {
+    event.preventDefault();
+    console.log('validity', $("#form")[0].checkValidity());
+    if (!$("#form")[0].checkValidity()) {
+      $("#form").find("#submit-hidden").click();
+      return;
+    }
+    $("#txStatus").text("Creating new land on the blockchain. This may take a while...");
+    let land_name = $(".new-land").val();
+    return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
       ELandsInstance = instance;
-      console.log('ids', ids);
-
-      var seedsRow = $('#seedsRow');
-      var seedTemplate = $('#seedTemplate');
-
-      $("#seeds").empty();
-      for (id of ids) {
-        // Look up seed details from our contract. Returns a `seed` object
-
-        ELandsInstance.seeds(id)
-          .then(function (seed) {
-            console.log('seed', seed);
-            // Using ES6's "template literals" to inject variables into the HTML.
-            // Append each one to our #seeds div
-
-            seedTemplate.find('.card-header').text(seed[0]);
-            // petTemplate.find('img').attr('src', data[i].picture);
-            seedTemplate.find('.seed-traits').text(seed[1]);
-            seedTemplate.find('.seed-plant').text(seed[2]);
-            seedTemplate.find('.seed-water').text(seed[3]);
-
-            seedsRow.append(seedTemplate.html());
-          });
-      }
+      return ELandsInstance.createLand(land_name).then(function (instance) {
+        $("#txStatus").text("Successfully created land (/· - ·)/");
+        return App.updateInterface();
+      }).catch(function (error) {
+        console.log(error.message);
+        $("#txStatus").text(error.message);
+      });
     });
   },
 
   createRandomSeed: function (event) {
     event.preventDefault();
-    // This is going to take a while, so update the UI to let the user know
-    // the transaction has been sent
     $("#txStatus").text("Creating new seed on the blockchain. This may take a while...");
-
-
-
-    App.ELands.deployed().then(function (instance) {
+    return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
       ELandsInstance = instance;
-
-      //var seedId = parseInt($(event.target).data('id'));
-      // var seedId = ELandsInstance.seeds.length;
       return ELandsInstance.getTotalSeeds().then(function (seedId) {
-        console.log('seedId', seedId);
         ELandsInstance.createRandomSeed(seedId).then(function (seed) {
           // TODO esto se está llamando antes de tiempo
-          console.log('seed', seed);
-          $("#txStatus").text("Successfully created " + seed[0] + "!");
-          // Transaction was accepted into the blockchain, let's redraw the UI
-          App.updateInterface();
+          $("#txStatus").text("Successfully created Seed " + seedId + "!");
+          return App.updateInterface();
+        }).catch(function (error) {
+          console.log(error.message);
+          $("#txStatus").text(error.message);
         });
       });
     });
-
-    // return etherealLands.methods.createRandomSeed(name)
-    //   .send({ from: userAccount })
-    //   .on("receipt", function (receipt) {
-    //     $("#txStatus").text("Successfully created " + name + "!");
-    //     // Transaction was accepted into the blockchain, let's redraw the UI
-    //     getSeedsByOwner(userAccount).then(displaySeeds);
-    //   })
-    //   .on("error", function (error) {
-    //     // Do something to alert the user their transaction has failed
-    //     $("#txStatus").text(error);
-    //   });
   },
 
-  seedPlanting: function (seedId) {
-    // This is going to take a while, so update the UI to let the user know
-    // the transaction has been sent
+  seedPlanting: function (event) {
+    event.preventDefault();
+    let seedId = parseInt($(event.target).data('id'));
+    console.log('SeedId', seedId);
     $("#txStatus").text("Planting seed on the blockchain. This may take a while...");
-    // Send the tx to our contract:seedId
-    return etherealLands.methods.seedPlanting(seedId)
-      .send({
-        from: userAccount
-      })
-      .on("receipt", function (receipt) {
-        $("#txStatus").text("Successfully planted " + receipt + "!");
-        // Transaction was accepted into the blockchain, let's redraw the UI
-        getSeedsByOwner(userAccount).then(displaySeeds);
-      })
-      .on("error", function (error) {
-        // Do something to alert the user their transaction has failed
-        $("#txStatus").text(error);
+    return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
+      ELandsInstance = instance;
+      return ELandsInstance.seedPlanting(seedId).then(function (result) {
+        $("#txStatus").text("Successfully planted Seed " + seedId + "!");
+        return App.updateInterface();
+      }).catch(function (error) {
+        console.log(error.message);
+        $("#txStatus").text(error.message);
       });
+    });
   },
 
-  seedWatering: function (seedId) {
-    // This is going to take a while, so update the UI to let the user know
-    // the transaction has been sent
+  seedWatering: function (event) {
+    event.preventDefault();
+    let seedId = parseInt($(event.target).data('id'));
+    console.log('SeedId', seedId);
     $("#txStatus").text("Watering seed on the blockchain. This may take a while...");
-    // Send the tx to our contract:seedId
-    return etherealLands.methods.seedWatering(seedId)
-      .send({
-        from: userAccount
-      })
-      .on("receipt", function (receipt) {
-        $("#txStatus").text("Successfully planted " + receipt + "!");
-        // Transaction was accepted into the blockchain, let's redraw the UI
-        getSeedsByOwner(userAccount).then(displaySeeds);
-      })
-      .on("error", function (error) {
-        // Do something to alert the user their transaction has failed
-        $("#txStatus").text(error);
+    return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
+      ELandsInstance = instance;
+      return ELandsInstance.seedWatering(seedId).then(function (result) {
+        $("#txStatus").text("Successfully watered Seed " + seedId + "!");
+        return App.updateInterface();
+      }).catch(function (error) {
+        console.log(error.message);
+        $("#txStatus").text(error.message);
       });
+    });
   },
 
-  goToBedEarlier: function () {
-    $("#txStatus").text("Going to bed earlier...");
-    return etherealLands.methods.goToBedEarlier()
-      .send({
-        from: userAccount,
-        value: web3js.utils.toWei("0.001", "ether")
-      })
-      .on("receipt", function (receipt) {
-        $("#txStatus").text("A new day has arrived!");
-      })
-      .on("error", function (error) {
-        $("#txStatus").text(error);
+  goToBed: function (event) {
+    event.preventDefault();
+    $("#txStatus").text("Going to bed ...");
+    return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
+      ELandsInstance = instance;
+      return ELandsInstance.goToBed().then(function (result) {
+        $("#txStatus").text("Successfully sleep!");
+        return App.updateInterface();
+      }).catch(function (error) {
+        console.log(error.message);
+        $("#txStatus").text(error.message);
       });
+    });
+  },
+
+  goToBedEarlier: function (event) {
+    event.preventDefault();
+    $("#txStatus").text("Going to bed earlier...");
+    return App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
+      ELandsInstance = instance;
+      return ELandsInstance.goToBedEarlier({
+        // value: web3js.utils.toWei("0.001", "ether")
+        value: 1000000000000000
+      }).then(function (result) {
+        $("#txStatus").text("Successfully sleep!");
+        return App.updateInterface();
+      }).catch(function (error) {
+        console.log(error.message);
+        $("#txStatus").text(error.message);
+      });
+    });
   },
 
   getSeedDetails: function (id) {
-    App.ELands.deployed().then(function (instance) {
+    App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
       ELandsInstance = instance;
 
       // Execute adopt as a transaction by sending account
@@ -264,7 +258,7 @@ App = {
   getSeedsByOwner: function (owner) {
     console.log('Owner:', owner);
 
-    App.ELands.deployed().then(function (instance) {
+    App.ELands.at("0x198c884EA858f04d6CFa7D4A02aA21dE1a4C130d").then(function (instance) {
       ELandsInstance = instance;
 
       // Execute adopt as a transaction by sending account
